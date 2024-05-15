@@ -3,6 +3,7 @@
     
    <%@ page import="java.util.List" %>
    <%@ page import="com.test.Employee" %>
+   <%@ page import="com.payments.PagenationDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +11,29 @@
 <title>Insert title here</title>
 </head>
 <body>
-            <%List<Employee> ep=(List<Employee>)request.getAttribute("emp");%> 
-           <% for(int i=0;i<ep.size();i++)%>
+	<%PagenationDAO dao=new PagenationDAO(); %>
+            <%List<Employee> eplist=dao.getEmployeeList();%> 
+           <table border="">
+					<tr>
+						<th>EmployeeID</th>
+						<th>EmployeeName</th>
+						<th>EmployeePhoneNumber</th>
+						<th>EmployeeDepartment</th>
+						<th>EmployeeSalary</th>
+					</tr>     
+					 <%for(int i=0;i<eplist.size();i++){ %>
+					<tr>
+					
+					<td><%=eplist.get(i).getEmployee_Id() %></td>
+						<td><%=eplist.get(i).getEmployee_name() %></td>
+						<td><%=eplist.get(i).getPhone_number() %></td>
+						<td><%=eplist.get(i).getDepartment() %></td>
+						<td><%=eplist.get(i).getSalary() %></td>
+						
+					</tr>    
+					<%} %>  
+           
+           </table>
            
 </body>
 </html>
